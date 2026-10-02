@@ -23,25 +23,29 @@
             <div class="linha-campos">
                 <div class="campo">
                     <label for="time_casa_id">Time da Casa *</label>
-                    <select id="time_casa_id" name="time_casa_id" required>
-                        <option value="">Selecione</option>
-                    </select>
+                    <select id="time_casa_id" name="time_casa_id">
+                    {% for time in times %}
+                    <option value="{{ time.id }}">{{ time.nome }}</option>
+                    {% endfor %}
+                </select>
                 </div>
                 <div class="campo">
                     <label for="time_visitante_id">Time Visitante *</label>
-                    <select id="time_visitante_id" name="time_visitante_id" required>
-                        <option value="">Selecione</option>
-                    </select>
+                    <select id="time_visitante_id" name="time_visitante_id">
+                    {% for time in times %}
+                    <option value="{{ time.id }}">{{ time.nome }}</option>
+                    {% endfor %}
+                </select>
                 </div>
             </div>
             <div class="linha-campos">
                 <div class="campo">
-                    <label for="placar_casa">Placar Casa</label>
-                    <input type="number" id="placar_casa" name="placar_casa" min="0" value="0">
+                    <label for="gols_casa">Placar Casa</label>
+                    <input type="number" id="gols_casa" name="gols_casa" min="0" value="0">
                 </div>
                 <div class="campo">
-                    <label for="placar_visitante">Placar Visitante</label>
-                    <input type="number" id="placar_visitante" name="placar_visitante" min="0" value="0">
+                    <label for="gols_visitante">Placar Visitante</label>
+                    <input type="number" id="gols_visitante" name="gols_visitante" min="0" value="0">
                 </div>
             </div>
             <div class="linha-campos">
@@ -49,10 +53,7 @@
                     <label for="data_partida">Data</label>
                     <input type="date" id="data_partida" name="data_partida">
                 </div>
-                <div class="campo">
-                    <label for="local">Local</label>
-                    <input type="text" id="local" name="local" placeholder="Ex: Quadra 1">
-                </div>
+
             </div>
             <div class="acoes-form">
                 <button type="submit" class="botao">Cadastrar</button>
@@ -67,7 +68,28 @@
         <h2>Lista de Partidas</h2>
         {% if partidas %}
         <table>
-<!--            Insira sua tabela aqui  -->
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>time_casa_id</th>
+                    <th>time_visitante_id</th>
+                    <th>gols_casa</th>
+                    <th>gols_visitante</th>
+                    <th>data_partida</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for partida in partidas %}
+                <tr>
+                    <td>{{ partida.id }}</td>
+                    <td>{{ partida.time_casa_visitante_id }}</td>
+                    <td>{{ partida.time_visitante_id }}</td>
+                    <td>{{ partida.gols_casa }}</td>
+                    <td>{{ partida.gols_visitante }}</td>
+                    <td>{{ partida.data_partida }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
         </table>
         {% else %}
             <p class="vazio">Nenhuma partida cadastrada ainda.</p>

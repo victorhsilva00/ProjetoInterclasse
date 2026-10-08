@@ -65,12 +65,12 @@
                 </tr>
             </thead>
             <tbody>
-            {% for jogador in jogadores %}
+            {% for jogador, time in jogadores %}
             <tr>
                 <td>{{ jogador.nome }}</td>
                 <td>{{ jogador.numero_camisa }}</td>
                 <td>{{ jogador.posicao.capitalize() }}</td>
-                <td>{{ jogador.time_id }}</td>
+                <td>{{ time.nome }}</td>
             </tr>
         {% endfor %}
         </tbody>
